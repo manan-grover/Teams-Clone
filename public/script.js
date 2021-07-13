@@ -6,9 +6,8 @@ const inGrid = document.getElementById('pre-grid') // video grid before joining 
 
 // initialising peer connection
 const myPeer = new Peer(undefined, {
-    path: 'peerjs',
     host: '/',
-    port: '443'
+    port: '3001'
 })
 
 let myID // my user ID
@@ -296,7 +295,6 @@ const muteUnmute = () => {
     setAudioOff()
     socket.emit('audioOff', myID)
     if(peers[myID].childNodes[3]){
-      console.log('here')
       peers[myID].childNodes[3].className="fas fa-microphone-slash fa-2x mic"
     }
   } else {
