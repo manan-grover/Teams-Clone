@@ -1,0 +1,240 @@
+#video-grid{
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+   margin-top: 100px;
+}
+#pre-grid{
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+   margin-top: 100px;
+   height: 30rem;
+}
+video{
+   height: 300px;
+   width: 400px;
+   object-fit: cover;
+   border-radius: 3%;
+}
+img{
+   height: 300px;
+   width: 400px;
+   object-fit: cover;
+   border-radius: 3%;
+}
+.show{
+   display: inline;
+   border-style: none;
+   border-width: 4px;
+   border-color: green;
+}
+.hide{
+   display: none;
+}
+.pre_input{
+   margin: 30px;
+   text-align: center;
+}
+.op_button {
+   border: 2px solid rgba(255, 255, 255, 0);
+   border-radius: 10px;
+   padding: 14px 28px;
+   font-size: 16px;
+   cursor: pointer;
+   background-color: rgba(255, 255, 255, 0.1);
+   color: white;
+}
+.op_button:hover {
+   background-color: rgba(255, 255, 255, 0.5);
+   color: black;
+}
+#name{
+   width: 400px;
+   height: 35px;
+   border-radius: 7%;
+   opacity: 70%;
+   font-size: 20px;
+}
+#pre_controls{
+   position: absolute;
+   left: 50%;
+   transform: translateX(-50%);
+   top: 470px;
+}
+#pre_operations{
+   margin-top: 30px;
+   margin-left: 50%;
+   transform: translateX(-25%);
+}
+.pre_warning{
+   text-align: center;
+   color: rgb(212, 44, 44);
+}
+.custom-control-input:checked ~ .custom-control-label::before {
+   border-color: rgb(127, 19, 170);
+   background-color: rgb(127, 19, 170);
+}
+.custom-switch.custom-switch-md .custom-control-label {
+   padding-left: 2rem;
+   padding-bottom: 1.5rem;
+}
+
+.custom-switch.custom-switch-md .custom-control-label::before {
+   height: 1.5rem;
+   width: calc(2rem + 0.75rem);
+   border-radius: 3rem;
+}
+
+.custom-switch.custom-switch-md .custom-control-label::after {
+   width: calc(1.5rem - 4px);
+   height: calc(1.5rem - 4px);
+   border-radius: calc(2rem - (1.5rem / 2));
+}
+
+.custom-switch.custom-switch-md .custom-control-input:checked ~ .custom-control-label::after {
+   transform: translateX(calc(1.5rem - 0.25rem));
+}
+.full_chat{
+   background-color:rgba(0, 0, 0, 0.7);
+   height:100%;
+   right:0;
+   overflow-x:hidden;
+   padding-top:60px;
+   position:fixed;
+   top:0;
+   z-index:1;
+   width: 0%;
+   overflow-y: auto;
+   color: white;
+   font-size: 17px;
+   transition:.5s
+}
+.full_chat .chat_header{
+   text-align: center;
+   font-size: 30px;
+}
+.full_chat .message_input{
+   width: 277px;
+   height: 35px;
+   position:fixed;
+   top: 95%;
+   color: black;
+}
+.names{
+   position: absolute;
+   left: 5%;
+   background-color: rgba(0, 0, 0, 0.5);
+   border-radius: 10%;
+   padding-left: 5px;
+   padding-right: 5px;
+   color: white;
+   top: 87%;
+   font-size: 17px;
+}
+.mic{
+   position: absolute;
+   right: 5%;
+   background-color: rgba(0, 0, 0, 0.5);
+   border-radius: 30%;
+   padding: 5px;
+   color: white;
+   top: 85%;
+   font-size: 20px;
+}
+.main_controls{
+   background-color: rgba(0, 0, 0, 0.7);
+   position: absolute;
+   width: 36%;
+   left: 32%;
+   height: 7%;
+   border-radius: 20px;
+   top: 87%;
+}
+.main_icon:hover{
+   color: gray;
+}
+.post_controls_block{
+   margin-top: 23%;
+   margin-left: 50%;
+   transform: translateX(-18%);
+}
+.glow{
+   color: gray;
+}
+#main_left{
+   background-color: rgba(0, 0, 0, 0.7);
+   position: absolute;
+   width: 60%;
+   left: 20%;
+   height: 15%;
+   top: 70%;
+   border-radius: 20px;
+   font-size: 20px;
+   color: white;
+}
+#captions{
+   margin-left: 20px;
+   margin-top: 20px;
+}
+.semi_chat{
+   position: absolute;
+   top: 0%;
+   left: 55%;
+   width: 30%;
+   height: 100%;
+}
+.semi_chat .main_chat{
+   background-color: rgba(0, 0, 0, 0.7);
+   width: 100%;
+   height: 70%;
+   margin-top: 20%;
+   color: white;
+   font-size: 20px;
+}
+.semi_chat .chat_header{
+   text-align: center;
+   font-size: 35px;
+   padding-top: 5%;
+}
+.semi_chat .message_input{
+   position: absolute;
+   top: 78%;
+   width: 100%;
+   height: 40px;
+   color: black;
+   border-radius: 10px;
+}
+#leave_chat_button{
+   margin-top: 7%;
+   margin-left: 35%;
+   font-size: 20px;
+}
+#participants{
+   position: absolute;
+   background-color: rgba(0, 0, 0, 0.7);
+   top: 11%;
+   left: 15%;
+   width: 30%;
+   height: 70%;
+   color: white;
+   font-size: 20px;
+}
+.part_header{
+   text-align: center;
+   font-size: 35px;
+   padding-top: 5%;
+   margin-bottom: 5%;
+}
+#copy_button{
+   margin-top: 70px;
+   margin-left: 15%;
+}
+.unselectable {
+   -webkit-touch-callout: none;
+   -webkit-user-select: none;
+   -khtml-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+}

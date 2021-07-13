@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <script>
+      const ROOM_ID = "<%= roomId %>"
+   </script>
+   <script defer src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script><script src="https://code.jquery.com/jquery-1.10.2.js"></script>  
+   <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script> 
+   <script src="/socket.io/socket.io.js" defer></script>
+   <script src="script.js" defer></script>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+   <link rel="stylesheet" href="styles.css">
+</head>
+<body style="background-color: #28283e;">
+   <div id="post" style="display: none;" class="unselectable">
+      <div class="post_middle">
+         <div class="post_controls_block">
+            <button class="op_button" onclick="location.href = ''" id="rejoin_button" style="display: inline;">Rejoin</button>
+            <button class="op_button" onclick="location.href = '/'" id="new_room_button" style="display: inline; margin-left: 10px;">Create new room</button>
+         </div>
+      </div>
+   </div>
+   <div id="pre" style="display: block;" class="unselectable">
+      <div class="pre_left">
+         <div class="pre_video">
+            <div id="pre-grid">
+
+            </div>
+         </div>
+      </div>
+      <div class="pre_middle">
+         <div id="pre_controls">
+            <div id="pre_video" style="display: inline;">
+               <i class="fas fa-video fa-2x" id="pre_camera" style="color: white; margin-right: 30px; width: 15px;"></i>  
+               <div class="custom-control custom-switch custom-switch-md" style="display: inline;">
+                  <input onclick="playStop()" type="checkbox" class="custom-control-input" id="customSwitch" checked="true">
+                  <label class="custom-control-label" for="customSwitch">
+                  </label>
+               </div>
+           </div>
+           <div id="pre_audio" style="display: inline; margin-left: 200px;">
+            <i class="fas fa-microphone fa-2x" id="pre_microphone" style="color: white; margin-right: 30px; width: 15px;"></i>  
+            <div class="custom-control custom-switch custom-switch-md" style="display: inline;">
+               <input onclick="muteUnmute()" type="checkbox" class="custom-control-input" id="customSwitch1" checked="true">
+               <label class="custom-control-label" for="customSwitch1">
+               </label>
+            </div>
+        </div>
+         </div>
+         <div class="pre_input">
+            <input id="name" type="text" placeholder="Enter your name">
+         </div>
+         <div class="pre_warning" id="empty_input" style="display: none;">
+            <span>Name field can not be empty</span>
+         </div>
+         <div class="pre_warning" id="non_alpha_input" style="display: none;">
+            <span>Name should start with an alphabet</span>
+         </div>
+         <div class="pre_warning" id="long_input" style="display: none;">
+            <span>Name can not have more than 20 characters</span>
+         </div>
+         <div id="pre_operations">
+            <button class="op_button" onclick="join()" id="join_button" style="display: inline;">Join Room</button>
+            <button class="op_button" onclick="joinChat()" id="join_chat_button" style="display: inline; margin-left: 200px;">Join Chat</button>
+            <button class="op_button" onclick="copy()" id="copy_button" style="display: block;">Copy Meeting Link</button>
+         </div>
+      </div>
+   </div>
+   <div id="main" style="display: none;" class="unselectable">
+      <div class="main__left">
+         <div class="main__videos">
+            <div id="video-grid">
+      
+            </div>
+         </div>
+         <div class="main_controls" style="caret-color: transparent;">
+            <i onclick="playStop()" class="fas fa-video-camera fa-3x main_icon" id="main_camera" style="margin-left: 10%; margin-top: 10px; width: 50px"></i>
+            <i onclick="muteUnmute()" class="fas fa-microphone fa-3x main_icon" id="main_microphone" style="margin-left: 10%; margin-top: 10px; width: 50px"></i>
+            <i onclick="leave()" class="fas fa-phone-slash fa-3x main_icon" style="margin-left: 10%; margin-top: 10px; width: 50px"></i>
+            <i onclick="openCloseChat()" class="fas fa-comment-alt fa-3x main_icon" id="main_chat" style="margin-left: 10%; margin-top: 10px; width: 50px"></i>
+            <i onclick="caption()" class="fas fa-closed-captioning fa-3x main_icon" id="main_captions" style="margin-left: 10%; margin-top: 10px; width: 50px"></i>
+         </div>
+      </div>
+      <div id="main_left" style="display: none;">
+         <div class="main_caption_window">
+            <div id="captions">
+               
+            </div>
+         </div>
+         <br>
+      </div>
+   </div>
+   <div id="participants" style="display: none; border-radius: 10px;">
+      <div class="part_header">
+         <i class="fas fa-users" style="color: white;"></i>
+         <span>Participants</span>
+      </div>
+   </div>
+   <div id="chat" style="display: none;" class="full_chat">
+      <div class="main_chat" style="border-radius: 10px;">
+         <div class="chat_header">
+            <i class="fas fa-comment-alt" style="color: white;"></i>
+            <span>Chat</span>
+         </div>
+         <br>
+         <div class="chat_window">
+            <ul class="messages">
+               
+            </ul>
+         </div>
+         <div class="message_container">
+            <input class="message_input" id="chat_message" type="text" placeholder="Type message here...">
+         </div>
+      </div>
+      <button class="op_button" onclick="leaveChat()" id="leave_chat_button" style="display: inline;">Leave Chat</button>
+   </div>
+</body>
+</html>
