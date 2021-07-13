@@ -6,8 +6,9 @@ const inGrid = document.getElementById('pre-grid') // video grid before joining 
 
 // initialising peer connection
 const myPeer = new Peer(undefined, {
+    path: 'peerjs',
     host: '/',
-    port: '3001'
+    port: '443'
 })
 
 let myID // my user ID
