@@ -6,8 +6,8 @@ const inGrid = document.getElementById('pre-grid') // video grid before joining 
 
 // initialising peer connection
 const myPeer = new Peer(undefined, {
-    port: 'peerjs',
-    host: '/',
+    path: 'peerjs',
+    host: 'engage-project.herokuapp.com',
     port: '443'
 })
 
