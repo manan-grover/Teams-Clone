@@ -3,7 +3,13 @@ const { disconnect } = require('process')
 const app = express()
 const server = require('http').Server(app)
 const io = require('socket.io')(server) // initialising socket io
+const { ExpressPeerServer } = require('peer');
+const peerServer = ExpressPeerServer(server, {
+  debug: true
+});
 const { v4: uuidV4 } = require('uuid') // uuid for random string generation used in url
+
+app.use('/peerjs', peerServer);
 
 app.set('view engine', 'ejs') // using ejs
 app.use(express.static('public'))
